@@ -12,7 +12,7 @@ export class PipelineCdkStack extends Stack {
     const githubToken = secretsmanager.Secret.fromSecretNameV2(this, 'GitHubToken', 'github/personal_access_token');
 
     const pipeline = new codepipeline.Pipeline(this, 'Pipeline', {
-      pipelineName: 'Pipeline',
+      pipelineName: 'CICD_Pipeline',
       crossAccountKeys: false,
     });
 
