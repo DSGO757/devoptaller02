@@ -5,10 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "test": "vitest",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test:ci": "CI=true npm test"
+    "test:ci": "CI=true npm test",
+    "test:junit": "vitest --reporter=junit --outputFile=./junit.xml"
+
   },
   "dependencies": {
     "react": "^18.3.1",
