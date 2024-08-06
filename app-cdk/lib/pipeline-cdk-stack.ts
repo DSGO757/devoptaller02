@@ -100,7 +100,7 @@ export class PipelineCdkStack extends Stack {
 
 
     pipeline.addStage({
-      stageName: 'Docker-Push-ECR',
+      stageName: 'Docker-Push-ECR2',
       actions: [
         new codepipeline_actions.CodeBuildAction({
           actionName: 'Docker-Build',
