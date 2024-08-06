@@ -4,9 +4,14 @@ import * as codepipeline from 'aws-cdk-lib/aws-codepipeline';
 import * as codebuild from 'aws-cdk-lib/aws-codebuild';
 import * as codepipeline_actions from 'aws-cdk-lib/aws-codepipeline-actions';
 import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
+import * as ecr from 'aws-cdk-lib/aws-ecr';
+
+interface ConsumerProps extends StackProps {
+  ecrRepository: ecr.Repository;
+}
 
 export class PipelineCdkStack extends Stack {
-  constructor(scope: Construct, id: string, props: StackProps) {
+  constructor(scope: Construct, id: string, props: ConsumerProps ) {
     super(scope, id, props);
 
     const githubToken = secretsmanager.Secret.fromSecretNameV2(this, 'GitHubToken', 'github/personal_access_token');
