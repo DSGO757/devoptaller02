@@ -105,7 +105,7 @@ export class PipelineCdkStack extends Stack {
         new codepipeline_actions.GitHubSourceAction({
           actionName: 'GitHub',
           owner: 'DSGO757',
-          repo: 'devoptaller02', // Reemplaza con el nombre de tu repositorio
+          repo: 'devoptaller02', // Reemplaza con el nombre de tu repositorio s
           branch: 'main',
           oauthToken: githubToken.secretValue,
           output: sourceOutput,
