@@ -150,8 +150,6 @@ export class PipelineCdkStack extends Stack {
       ]
     });
 
-
-
     new CfnOutput(this, 'GitHubRepositoryUrl', {
       value: `https://github.com/DSGO757/devoptaller02`,
     });
