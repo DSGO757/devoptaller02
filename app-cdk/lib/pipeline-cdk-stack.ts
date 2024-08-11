@@ -12,7 +12,7 @@ import * as ecsPatterns from 'aws-cdk-lib/aws-ecs-patterns';
 interface ConsumerProps extends StackProps {
   ecrRepository: ecr.Repository;
   fargateServiceTest: ecsPatterns.ApplicationLoadBalancedFargateService,
-  fargateServiceProd: ecsPatterns.ApplicationLoadBalancedFargateService,
+ /* fargateServiceProd: ecsPatterns.ApplicationLoadBalancedFargateService,*/
 }
 
 export class PipelineCdkStack extends Stack {
@@ -150,7 +150,7 @@ export class PipelineCdkStack extends Stack {
         }),
       ]
     });
-
+/*
     pipeline.addStage({
       stageName: 'Deploy-Production',
       actions: [
@@ -166,7 +166,7 @@ export class PipelineCdkStack extends Stack {
         }),
       ],
     });
-
+*/
     new CfnOutput(this, 'GitHubRepositoryUrl', {
       value: `https://github.com/DSGO757/devoptaller02`,
     });
