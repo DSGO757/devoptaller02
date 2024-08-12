@@ -281,7 +281,21 @@ const ecsCodeDeployApp = new codedeploy.EcsApplication(this, "my-app", { applica
         max: 60,
       },
     });
-
+    const downloadDuration = new cloudwatch.GraphWidget({
+      title: 'Lab06 Checkout Duration',
+      width: 24,
+      height: 5,
+      left: [
+        new cloudwatch.Metric({
+          namespace: 'AWS/CodeBuild',
+          metricName: 'DownloadSourceDuration',
+          statistic: 'max',
+          label: 'Duration',
+          period: Duration.minutes(5),
+          color: cloudwatch.Color.PURPLE,
+        }),
+      ],
+    });
     new cloudwatch.Dashboard(this, 'CICD_Dashboard', {
       dashboardName: 'CICD_Dashboard',
       widgets: [
@@ -290,6 +304,7 @@ const ecsCodeDeployApp = new codedeploy.EcsApplication(this, "my-app", { applica
           buildsCount,
           averageDuration,
           queuedDuration,
+          downloadDuration,
         ],
       ],
     });
