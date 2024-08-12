@@ -244,12 +244,52 @@ const ecsCodeDeployApp = new codedeploy.EcsApplication(this, "my-app", { applica
         }),
       ],
     });
+
+    const averageDuration = new cloudwatch.GaugeWidget({
+      title: 'Lab6 Average Build Time',
+      width: 6,
+      height: 6,
+      metrics: [
+        new cloudwatch.Metric({
+          namespace: 'AWS/CodeBuild',
+          metricName: 'Duration',
+          statistic: 'avg',
+          label: 'Duration',
+          period: Duration.hours(1),
+        }),
+      ],
+      leftYAxis: {
+        min: 0,
+        max: 300,
+      },
+    });
+    const queuedDuration = new cloudwatch.GaugeWidget({
+      title: 'Lab6 Build Queue Duration',
+      width: 6,
+      height: 6,
+      metrics: [
+        new cloudwatch.Metric({
+          namespace: 'AWS/CodeBuild',
+          metricName: 'QueuedDuration',
+          statistic: 'avg',
+          label: 'Duration',
+          period: Duration.hours(1),
+        }),
+      ],
+      leftYAxis: {
+        min: 0,
+        max: 60,
+      },
+    });
+
     new cloudwatch.Dashboard(this, 'CICD_Dashboard', {
       dashboardName: 'CICD_Dashboard',
       widgets: [
         [
           buildRate,
           buildsCount,
+          averageDuration,
+          queuedDuration,
         ],
       ],
     });
