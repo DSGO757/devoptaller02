@@ -229,11 +229,27 @@ const ecsCodeDeployApp = new codedeploy.EcsApplication(this, "my-app", { applica
         }),
       ],
     });
+
+    const buildsCount = new cloudwatch.SingleValueWidget({
+      title: 'LAB6 -Total Builds',
+      width: 6,
+      height: 6,
+      metrics: [
+        new cloudwatch.Metric({
+          namespace: 'AWS/CodeBuild',
+          metricName: 'Builds',
+          statistic: 'sum',
+          label: 'Builds',
+          period: Duration.days(30),
+        }),
+      ],
+    });
     new cloudwatch.Dashboard(this, 'CICD_Dashboard', {
       dashboardName: 'CICD_Dashboard',
       widgets: [
         [
           buildRate,
+          buildsCount,
         ],
       ],
     });
